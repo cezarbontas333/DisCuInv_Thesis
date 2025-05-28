@@ -1,4 +1,4 @@
-## Core latex/pdflatex auxiliary files:
+\## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
 *.log
@@ -20,6 +20,9 @@
 # *.ps
 # *.eps
 # *.pdf
+
+# Exception for the generated LaTex build as this should be added at releases. It's redundant in the repo.
+thesis.pdf
 
 ## Generated if empty string is given at "Please type another file name for output:"
 .pdf
