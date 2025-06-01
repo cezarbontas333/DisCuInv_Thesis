@@ -1,5 +1,12 @@
 \documentclass[a4paper,11pt]{scrreprt}                       % default is A4 paper style and 11pt font size
 
+%%%%% Author note for who reviews the code %%%%%%%
+%Please use word warping for viewing the current LaTex source as it has been easier
+%for me to write on a smaller screen. Apologiez for the long lines.
+%Also, for anyone concerned, comments left here may come from the original authors of the template
+%but otherwise the thesis' content is of my own contribution
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%% version history %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %27.05.2021: updates about layout/plagiarism from Monica Patrascu, Bogdan Dumitrescu
@@ -30,17 +37,17 @@
 %%%%%%%%%%%%%%%%%%%%%%% frontmatter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \pagenumbering{roman}																				% default numbering for the frontmatter is roman
 
-\title{Titlu lucrare de diplomă}					    % title of your manuscript
-\author{nume student}																				% author name
-\advisor{nume coordonator}																			    % advisor name
+\title{Discontinuous Current Conduction in Solar Energy Production}					    % title of your manuscript
+\author{Bontaș Cezar-Octavian}																				% author name
+\advisor{Petrescu Cătălin-Dumitru}																			    % advisor name
 
 \maketitle
 
 % show table of contents, figures, tables and algorithms
 
-\tableofcontents 
+\tableofcontents
 \printnoidxglossaries																				% \printglossaries works only if the makeindex has the correct arguments
-\listoffigures 
+\listoffigures
 \addcontentsline{toc}{chapter}{\listfigurename}
 \listoftables
 \addcontentsline{toc}{chapter}{\listtablename}
@@ -53,17 +60,18 @@
 \pagenumbering{arabic}																			% default numbering for the mainmatter is arabic
 
 % here is the text of you manuscript; you can put it directly here but it is better to include files (the main file will be more compact)
-\input{\chapters/intro}
-\input{\chapters/diverse}
-\input{\chapters/main}
-\input{\chapters/notatii}
+\input{\chapters/introduction}
+\input{\chapters/theoretical}
+\input{\chapters/model}
+\input{\chapters/practical}
+\input{\chapters/conclusions}
 
 %%%%%%%%%%%%%%%%%%%%%% back matter %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 \appendixpage
 \addappheadtotoc
 \begin{appendices}																				  % from here onwards are the appendices
-\input{\chapters/surse}
+    \input{\chapters/sources}
 \end{appendices}
 
 \cleardoublepage
