@@ -1,3 +1,20 @@
 \chapter{Conclusions and Further Exploration}
 \label{chap:conclusions}
 
+\myLettrine{T}{he} work presents the mathematical model of the \gls{H-bridge} and the connected LCL filter at the output under \gls{dcm} and \gls{ccm}, an ideal model used in simulating normal operation, and a hardware prototype that can be used in this application.
+
+\chapref{chap:theoretical} gives the context related to microgrid systems, how the inverter functions in these kinds of architectures and its behaviour under \gls{ccm} and \gls{dcm}.
+Even thought standard applications either use \gls{ccm} or a combination of both continuous and discontinuous conduction modes, a much more simple, only \gls{dcm} usage has been justified using a half-bridge model in order to describe the median output current in relation to the inductance of the filter, capacitor voltage and \gls{pwm} duty cycle.
+Unlike \gls{ccm}, where the inverter acts as a controlled voltage source, under \gls{dcm} this can also function as a constant power source, which means as long as a voltage reference is being followed, only the current should be regulated for the desired outcome.
+\chapref{chap:solution} goes into explaining the control algorithm used to regulate the imposed current, which in this case would be a \gls{pi} controller, by first providing an analytical demonstration of how the switching periods should be calculated under \gls{dcm}, then testing the resulting model using a computerized simulation.
+The main idea of identifying a proper control strategy under \gls{dcm} is to determine the physical filter model, simulate a damping effect for diminishing the oscillations caused by the small internal load resistance, then compute the equivalent \gls{pi} controller.
+This is provided using Simulink and Simscape, a set of toolboxes where I modelled the circuit using ideal components as to avoid uncertainties that may negatively affect trial runs used to determine the validity of the system.
+The graphs provided show both successful and failed attempts in regulating the output current, which may be caused by the poor robustness of the chosen controller, as \gls{pi} regulators are not as performant in tracking sinusoidal references, and because \gls{dcm} have the downside of having an upper current limit as the inductor of the filter starts to enter in current saturation.
+In \chapref{chap:practical}, I detail a practical prototype, that includes both hardware and software considerations.
+For the \gls{pcb} prototype, I have explained the component choice, copper layout stacking, component placement and how I routed the signals across its surface, while respecting good practices in order to preserve signal integrity and minimize used surface.
+I follow this with a section detailing the software architecture used to manage the microcontroller's resources and generate commands for the \gls{H-bridge} power section from across the board.
+
+While the thesis has explored its stated objectives, it does lack in rigorous testing in order to ascertain the true efficiency of the chosen topology.
+This work contains both functional and failed test cases, but it needs a proper investigation in why this behaviour appears, and if there are solutions that can mitigate these effects.
+There should also be a discussion around the regulator algorithm and which one can be used that would both improve the performances and keep the \gls{pwm} signal generation as simple as possible.
+Last, but not the least, a further study on controller's performance and resilience against perturbation should be done in order to pinpoint how solar panel voltage fluctuations or noise caused by secondary harmonics in the grid's voltage affect the efficiency of the system.

@@ -1,2 +1,19 @@
 \chapter{Introduction}
 \label{chap:introduction}
+
+\myLettrine{S}{olar} energy and its conversion methods to electrical energy have been heavily explored \cite{pena2014robust, de2023sliding, 10.3389/fenrg.2024.1498514, systematiclcl2015}over the past decades as technological advancements in cell structure, computing power and topologies have improved the viability of this method for energy production.
+It is much more important in today's climate as the energy input has significantly increased as to satisfy the energy consumption from industrial and personal activities.
+This has lead to further demand for solar energy conversion infrastructure, especially in areas where the reliance on the electrical output of the grid is suboptimal.
+A popular choice in recent years is establishing a microgrid architecture \cite{pena2014robust}, where each household has an array of \gls{pv} panels that provides energy, and the surplus can be stored in battery cells or send to compensate the electrical load in the grid.
+These applications are rather small in total power output, so there's an incentive for low-cost, easy and scalable implementations to be researched.
+
+There are a lot of methods used for solar conversion, however many of them involve complex mathematical algorithms or expensive components, which may be a hindrance to the average household consumer\cite{rashid2013power}. 
+From hybrid usage of current conduction modes \cite{morroni2009adaptive}, maximum power point tracking, or sliding mode control \cite{de2023sliding}, many of these methods revolve around controlling the current flow through \gls{pwm} signal generation which drives active switching circuits, which in power applications most of them are transistors.
+Each type of transistor has different properties, from switching time, power consumption and heat dissipation, that affects the operation of the circuits involved in the conversion.
+The biggest issue with the methods mentioned and the standard ones used in current applications are that hardware signal generation blocks tend to require complex algorithms \cite{reznik2013lcl} to create the desired command, thus making the implementation hard to both implement on low-cost hardware and to further tune should the plant change its parameters.
+
+I believe that cheap, easy to manufacture solutions are important in promoting green energy to a wider audience, especially households and hobbyists, that would want to improve their quality of life.
+In this thesis I will provide a simpler method for current control of inverters, both in hardware architecture and regulator implementation, based around a voltage source inverter with an LCL filter which acts as a constant power source.
+The controller algorithm used in conjunction is a simple \gls{pi} regulator, which should more appropriate on smaller scale applications, with power targets known.
+I will present both \gls{ccm} and \gls{dcm}, why \gls{dcm} has great potential in the described application, a mathematical model used for simulating it, and to design a prototype \gls{pcb} around these concepts.
+Finally, I will interpret the results given by the simulation and try to pinpoint ways in which the proposed solution can be improved.
