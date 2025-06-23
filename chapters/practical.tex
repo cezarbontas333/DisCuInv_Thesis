@@ -26,7 +26,7 @@ In most common instances, the bridge is composed of 4 transistors, either MOSFET
 For this, I have chosen 2 IFX007Ts, which are \gls{ic}s containing a half-bridge and gate drivers, used primarily for motor control, but these can also be used in power conversion applications.
 Since they can withstand up to $50A$ of current flowing through the drain and operate up to $40V$, these components satisfy the required targets.
 
-Passive components chosen for the LCL filter are crucial in order to block residual high frequencies caused by the \gls{pwm} switching and any other external sources of noise\cite{reznik2013lcl, systematiclcl2015}. 
+Passive components chosen for the LCL filter are crucial in order to block residual high frequencies caused by the \gls{pwm} switching and any other external sources of noise\cite{reznik2013lcl, systematiclcl2015}.
 Criteria for choosing these consist of low ESR values, which in turn would mean higher power conversion efficiency, tolerance values of the main characteristic of that component, maximum saturation current for the inductors and low ripple current for the capacitors.
 Hybrid aluminum polymer capacitors exhibit such good values, and for inductors, specialized flexible transformer have been used, as the windings can be independently connected in serial and parallel configurations. This achieves different turn ratios, inductance and current-carrying capabilities.
 
@@ -39,8 +39,8 @@ Hybrid aluminum polymer capacitors exhibit such good values, and for inductors, 
 The main take from \figref{fig:transf} is the following: the flexible transformer chosen can be thought of as 6 independent coils that can be connected in any way (as long as polarities are respected, market with a dot).
 Knowing the base inductance per turn ($L_{base}$) is $12\mu H$ and the base current is $1.7A$, coils put in parallel multiply the base current rating, and windings put in series increase the inductance of the primary/secondary couple in accordance to this equation:
 \begin{equation}
-\label{eq:Lwindings}
-L_{res}=L_{base} \cdot N_{sw}^2
+    \label{eq:Lwindings}
+    L_{res}=L_{base} \cdot N_{sw}^2
 \end{equation}
 where $N_{sw}$ is the number of windings in series.
 For the given examples, the middle configuration turns into a 1:1 ratio, $108\mu H$ transformer that can carry $1.7A$ of RMS current, and the right configuration is a 3:1 ratio transformer that has the same values on the primary as the former configuration, but the secondary can carry $5.1A$ with inductance $12\mu H$.
@@ -50,10 +50,10 @@ This resistor has a low resistance value (usually under $1\Omega$), near 0\% tol
 Since we expect to deliver at least $2.5A$ RMS current through the \gls{pcb} traces, and to have minimal voltage drop across the resistor's terminals, I've chosen the WSLP2512R0100FEA, which is a $10m\Omega$, $\pm 1\%$ SMD resistor that can withstand $3W$ of power.
 This is sufficient, as per Joule's first law:
 \begin{equation}
-\label{eq:Joulefirstlaw}
-P = I^2 \cdot R
+    \label{eq:Joulefirstlaw}
+    P = I^2 \cdot R
 \end{equation}
-it would result in a peak power dissipation of around $0.01\Omega \cdot (10A)^2 = 1W$, which is a third of the maximum power rating and a safe value to consistently maintain without damaging the component\cite{scherz2006practical}. 
+it would result in a peak power dissipation of around $0.01\Omega \cdot (10A)^2 = 1W$, which is a third of the maximum power rating and a safe value to consistently maintain without damaging the component\cite{scherz2006practical}.
 
 \begin{figure}[!ht]
     \begin{center}\includegraphics[width=\singlefigure]{\pics/schematics/kelvincon}\end{center}
@@ -62,11 +62,11 @@ it would result in a peak power dissipation of around $0.01\Omega \cdot (10A)^2 
 \end{figure}
 
 The voltage sensing terminals are then connected through \gls{Kelvin connection} (as shown in \figref{fig:kelvin}) to operational amplifiers and instrumentation amplifiers, like the MCP6001 and the AD8418 series respectively, used for amplifying the signal's gain and reject common-mode signals.
-Current can't be directly measured, however the voltage drop on the shunt can be quantified, and since it is defined to be small in order to minimize losses, gain amplification needs to be done\cite{scherz2006practical}. 
+Current can't be directly measured, however the voltage drop on the shunt can be quantified, and since it is defined to be small in order to minimize losses, gain amplification needs to be done\cite{scherz2006practical}.
 To calculate the source current, we can use Ohm's law:
 \begin{equation}
-\label{eq:Ohmslaw}
-V = I \cdot R
+    \label{eq:Ohmslaw}
+    V = I \cdot R
 \end{equation}
 where the voltage is measured and resistance is already known.
 
@@ -127,7 +127,7 @@ Finally, each half bridge \gls{ic} contains a current sense signal $IS$ that can
 Control and measurement signals used in the feedback loop have the direction of flow represented in \figref{fig:mainsch}, going to and from the \textit{MCU IO} block.
 The separation in schematic is not only physical, as the number of peripherals connected to the microcontroller require space in order to be properly laid out.
 These signals should be routed to accommodate for the electrical requirements in order to avoid induced noises and significant voltage drops.
-Mainly, voltage and current measured are analog signals and have to pass through the \gls{adc}s, meaning that the wires should be physically as far as possible (depicted in \figref{fig:analogzone}) from any digital signals, and especially switching pulses, like the $INH$ signal\cite{zumbahlen2007basic}. 
+Mainly, voltage and current measured are analog signals and have to pass through the \gls{adc}s, meaning that the wires should be physically as far as possible (depicted in \figref{fig:analogzone}) from any digital signals, and especially switching pulses, like the $INH$ signal\cite{zumbahlen2007basic}.
 Besides control signals, other auxiliary ports are connected to the microcontroller to allow the users to implement additional functionalities depending on the application, but most importantly to create mechanisms for emergency stops or to point out the functioning state of the hardware and to upload and debug the program to be written on the microcontroller.
 
 \begin{figure}[!ht]
@@ -140,7 +140,7 @@ Even if the board already has a power input coming from the supposed photovoltai
 Instead, the board has to be powered on by an individual power supply, which could give some flexibility in how the solution can draw supply rails to each \gls{ic} and can reduce the footprint on board.
 There cold be multiple ways to create this architecture, but in the end, I have chosen to include a classic step-down transformer with a diode rectifier in order to power the circuit from any \gls{ac} source.
 This option would ease the development of the board as energy coming from the grid is already subjected to strict control, thus requiring less components to filter the resulting input current.
-For powering the components, there are 2 solutions to draw the supply rails: either have separate wires for each power domain, and in this case, separation from discrete and analogic devices, or spread the components' placement across a dedicated power plane\cite{zumbahlen2007basic}. 
+For powering the components, there are 2 solutions to draw the supply rails: either have separate wires for each power domain, and in this case, separation from discrete and analogic devices, or spread the components' placement across a dedicated power plane\cite{zumbahlen2007basic}.
 Since circuit requirements are not stringent, as long as current paths do not cross from one domain to another, a dedicated power plane may be sufficient for proper operation.
 
 This leads to the final consideration of the board, deciding the stack-up of the \gls{pcb}.
@@ -170,3 +170,29 @@ Inner layers on this section only have shielding effect in order to reduce \gls{
 
 \section{Software Implementation}
 \label{sec:swimp}
+
+As expected from the previously described design, the active circuits present on the board have to be driven by the control algorithm in order for the system to properly function.
+The most important component that orchestrates this aspect is the microcontroller, that hosts the peripherals necessary in order to measure both the system's parameters and to compute the \gls{pwm} duty cycle.
+When talking about the software's architecture, besides the CPU that is responsible for scheduling the program and to calculate the next time period, there is a need to mention the dedicated hardware peripherals inside the microcontroller that facilitate physical to digital connections which make the solution function.
+In \figref{fig:swarch} is presented how the peripherals are logically connected in order to create the control algorithm.
+\begin{figure}[!ht]
+    \begin{center}\includegraphics[width=\singlefigure]{\pics/schematics/swarch}\end{center}
+    \caption{Logical representation of software architecture and peripheral usage}
+    \label{fig:swarch}
+\end{figure}
+
+In layman terms, the physical circuit works in the continuous domain, meaning each current and voltage is corresponding to the analog domain.
+It is not enough to only measure these, but to convert them using the \gls{adc} peripheral, which would give raw numeric values.
+This block can also scale these values to floating point voltages and currents based on the PSoC3M5's documentation that implements a function call.
+For the control algorithm, we need to have the output inductor's current, grid voltage, source voltage and at least one of the capacitor's voltage, since in theory, the capacitors have a complementary voltage that averages to the output source voltage.
+Since the \gls{adc} peripheral can work up to 240MHz, and it takes a minimum of 4 cycles for the results, the average response time for the conversion is around $16.66\mu s$ \cite{psocdatasheet}.
+If the \gls{pwm} sampling frequency is chosen as 50KHz, the \gls{pwm} counter has 1200 values, or an 11-bit resolution, which is sufficient for precise commands.
+As the \gls{adc} block functions independent of the CPU, there is no need to optimize the scheduler to take each conversion into account, as once the operation is done, we can trigger the peripheral to update the measured values to the software.
+The same procedure is done for computing the reference value for the desired sine wave, as we can offload the workload from the CPU to the CORDIC block.
+CORDIC is a special hardware acceleration block that can compute trigonometrical functions and the square roots much faster than traditional software methods, meaning it is appropriate in this instance to update the reference sine wave every \gls{pwm} time period.
+Having all of the necessary values to compute the next duty cycle, the CPU them computes the correct command that is sent to the \gls{pwm} signal generation block.
+To drive the MOSFETs inside the IFX007T, there are 3 signals used as follows:
+\begin{itemize}
+    \item ${INH}$ is the signal driven using \gls{pwm}, that is common to both half-bridges;
+    \item $IN_A$ and $IN_B$ are driven complementary; when one half-bridge drives the high-side transistor, the other should also open the low-side transistor for allowing the system to function under \gls{dcm}.
+\end{itemize}
